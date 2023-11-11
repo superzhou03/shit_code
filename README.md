@@ -1,2 +1,3 @@
 # shit_code
-just some rubbish^_^
+just some rubbish
+/(ㄒoㄒ)/~~
