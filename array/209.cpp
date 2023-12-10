@@ -18,4 +18,4 @@ public:
         // 这里如果所有数组元素和<target,就输出0
         return lenth == INT_MAX ? 0 : lenth;       
     }
-};
+}
