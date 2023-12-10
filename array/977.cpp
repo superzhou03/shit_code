@@ -1,5 +1,7 @@
 // Author: superzhou03
 // Created time: 2023-12-10
+// 不知道为什么被注释掉的代码用了684ms，26.9MB内存，好慢
+// 第二段没有被注释掉的只有24ms，太快了。简直夸张，怀疑是不是vector的原因
 // class Solution {
 // public:
 //     vector<int> sortedSquares(vector<int>& nums) {
@@ -33,4 +35,5 @@ public:
         }
         return ans;
     }
-};
+}
+;
