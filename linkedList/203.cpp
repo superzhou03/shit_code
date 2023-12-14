@@ -20,12 +20,17 @@ public:
         ListNode *current = vHead;
         while (current->next != NULL) {
             if (current->next->val == val)
+                Listnode* tmp = current->nextl
                 current->next = current->next->next;
+                delete tmp;
             else
                 current = current->next;
         }
         // 不明白为什么释放current的空间之后代码会运行不起来
         // delete current;
-        return vHead->next;
+        // return vHead->next;
+        head = vHead->next;
+        delete vHead;
+        return head;
     }
 };
