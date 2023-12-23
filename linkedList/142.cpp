@@ -1,7 +1,7 @@
 // Author: superzhou03
 // Created time: 2023-12-23
 // 参照'leecode No.142.png'
-// 主要思路参照https://programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html#%E6%80%9D%E8%B7%AF
+// 主要思路参照programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html#%E6%80%9D%E8%B7%AF
 // 主要解法是快慢指针,当进入链表的环形部分后,肯定是fast指针追slow指针
 // 那么当两指针相遇时，标记该点
 // 该点到环形入口的距离和链表起点到该点的距离一样
