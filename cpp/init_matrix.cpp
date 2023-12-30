@@ -1,3 +1,5 @@
+// Author: superzhou03
+// Created time: 2023-12-28
 #include <iostream>
 #include <fstream>
 #include <random>
@@ -38,12 +40,8 @@ void save_matrix(const string &filename, vector<vector<int>> matrix, int size) {
 }
 
 int main() {
-    vector<vector<int>> matrix1 = initialize_matrix(100);
-    vector<vector<int>> matrix2 = initialize_matrix(100);
-    vector<vector<int>> matrix3 = initialize_matrix(1000);
-    vector<vector<int>> matrix4 = initialize_matrix(1000);
-    save_matrix("matrix1.txt", matrix1, 100);
-    save_matrix("matrix2.txt", matrix2, 100);
-    save_matrix("matrix3.txt", matrix3, 1000);
-    save_matrix("matrix4.txt", matrix4, 1000);
+    vector<vector<int>> matrix1 = initialize_matrix(1000);
+    vector<vector<int>> matrix2 = initialize_matrix(1000);
+    save_matrix("matrix1.txt", matrix1, 1000);
+    save_matrix("matrix2.txt", matrix2, 1000);
 }
