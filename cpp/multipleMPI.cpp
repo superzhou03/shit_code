@@ -26,7 +26,7 @@ void master() {
                 matrix2[j][k] = k + 1;
         }
     }
-    MPI_Bcast(b, AColSize * BColSize, MPI_DOUBLE, m_id, MPI_COMM_WORLD);
+    MPI_Bcast(matrix2, AColSize * BColSize, MPI_DOUBLE, m_id, MPI_COMM_WORLD);
     for (int i = 0; i < std::min(numProcess - 1, ARowSize); i++) {
         for (int j = 0; j < AColSize; j++) {
             buffer[j] = matrix1[i][j];
@@ -54,7 +54,7 @@ void master() {
 
 
 void slave() {
-    MPI_Bcast(b, AColSize * BColSize, MPI_DOUBLE, m_id, MPI_COMM_WORLD);
+    MPI_Bcast(matrix2, AColSize * BColSize, MPI_DOUBLE, m_id, MPI_COMM_WORLD);
     while (true) {
         MPI_Recv(buffer, AColSize, MPI_DOUBLE, m_id, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
         if (status.MPI_TAG != end_tag) {
