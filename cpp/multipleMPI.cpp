@@ -8,8 +8,8 @@
 #include <vector>
 
 const int AColSize = 1000, ARowSize = 1000, BColSize = 1000;
-double A[ARowSize][AColSize] = {0};
-double b[AColSize][BColSize] = {0};
+double matrix1[ARowSize][AColSize] = {0};
+double matrix2[AColSize][BColSize] = {0};
 double ans_buffer[BColSize] = {0};
 std::vector<std::vector<int>> ans(ARowSize, std::vector<int>(AColSize, 0));
 double buffer[AColSize] = {0};
@@ -21,15 +21,15 @@ const std::string outputFile = "result3.txt";
 void master() {
     for (int i = 0; i < ARowSize; i++) {
         for (int j = 0; j < AColSize; j++) {
-            A[i][j] = i + 1;
+            matrix1[i][j] = i + 1;
             for (int k = 0; k < BColSize; k++)
-                b[j][k] = k + 1;
+                matrix2[j][k] = k + 1;
         }
     }
     MPI_Bcast(b, AColSize * BColSize, MPI_DOUBLE, m_id, MPI_COMM_WORLD);
     for (int i = 0; i < std::min(numProcess - 1, ARowSize); i++) {
         for (int j = 0; j < AColSize; j++) {
-            buffer[j] = A[i][j];
+            buffer[j] = matrix1[i][j];
         }
         MPI_Send(buffer, AColSize, MPI_DOUBLE, i + 1, i + 1, MPI_COMM_WORLD);
         numSent++;
@@ -42,7 +42,7 @@ void master() {
         int sender = status.MPI_SOURCE;
         if (numSent < ARowSize) {
             for (int j = 0; j < AColSize; j++) {
-                buffer[j] = A[numSent][j];
+                buffer[j] = matrix1[numSent][j];
             }
             MPI_Send(buffer, AColSize, MPI_DOUBLE, sender, numSent + 1, MPI_COMM_WORLD);
             numSent++;
@@ -61,7 +61,7 @@ void slave() {
             for (int i = 0; i < BColSize; i++) {
                 ans_buffer[i] = 0;
                 for (int j = 0; j < AColSize; j++) {
-                    ans_buffer[i] += buffer[j] * b[j][i];
+                    ans_buffer[i] += buffer[j] * matrix2[j][i];
                 }
             }
             MPI_Send(ans_buffer, BColSize, MPI_DOUBLE, m_id, status.MPI_TAG, MPI_COMM_WORLD);
